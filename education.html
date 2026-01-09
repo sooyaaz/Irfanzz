@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irf | Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a0933;
+            --secondary: #2d1250;
+            --accent: #6b46c1;
+            --purple-light: #9d7aea;
+            --purple-glow: #b794f6;
+            --gold: #f6ad55;
+            --pink: #ed64a6;
+            --cyan: #4fd1c5;
+            --text-light: #e2e8f0;
+            --bg-dark: #0f0720;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(107, 70, 193, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(237, 100, 166, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+
+        ul, figure { margin: 0; padding: 0; list-style: none; }
+
+    
+        ul.particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        li.particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--purple-glow);
+            border-radius: 50%;
+            animation: float-particle 20s infinite ease-in-out;
+            box-shadow: 0 0 15px var(--purple-glow);
+        }
+
+        li.particle:nth-child(1) { left: 15%; top: 25%; animation-delay: 0s; }
+        li.particle:nth-child(2) { left: 85%; top: 65%; animation-delay: 2s; }
+        li.particle:nth-child(3) { left: 35%; top: 75%; animation-delay: 4s; }
+        li.particle:nth-child(4) { left: 75%; top: 35%; animation-delay: 6s; }
+        li.particle:nth-child(5) { left: 55%; top: 55%; animation-delay: 8s; }
+
+        @keyframes float-particle {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            25% { transform: translate(50px, -50px) scale(1.5); opacity: 0.8; }
+            50% { transform: translate(-50px, -100px) scale(1); opacity: 0.5; }
+            75% { transform: translate(30px, -70px) scale(1.3); opacity: 0.7; }
+        }
+
+        nav {
+            background: rgba(26, 9, 51, 0.9);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(107, 70, 193, 0.3);
+            border-bottom: 1px solid rgba(157, 122, 234, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        
+        section.nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-glow);
+        }
+
+        
+        main.container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 3rem 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+    
+        header.page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(-30px); }
+        }
+
+        header.page-header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: pulse-glow 2s ease-in-out infinite, text-wave 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(157, 122, 234, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(237, 100, 166, 0.8)); }
+        }
+
+        @keyframes text-wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        header.page-header p {
+            color: var(--cyan);
+            font-size: 1.2rem;
+        }
+
+        
+        section.timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        section.timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--purple-glow), var(--pink), var(--gold));
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(157, 122, 234, 0.5);
+            animation: glow-line 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-line {
+            0%, 100% { box-shadow: 0 0 20px rgba(157, 122, 234, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(237, 100, 166, 0.8); }
+        }
+
+        
+        article.timeline-item {
+            display: flex;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        article.timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        article.timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        article.timeline-item:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(30px); }
+        }
+
+        article.timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        
+        section.timeline-content {
+            width: 45%;
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        section.timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        section.timeline-content:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(237, 100, 166, 0.6);
+        }
+
+        article.timeline-item:nth-child(odd) section.timeline-content {
+            margin-left: auto;
+        }
+
+        
+        figure.timeline-icon {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 40px rgba(107, 70, 193, 0.6);
+            z-index: 10;
+            animation: icon-bounce 2s infinite;
+            border: 5px solid rgba(157, 122, 234, 0.5);
+            overflow: hidden;
+            margin: 0;
+        }
+
+        @keyframes icon-bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            25% { transform: translateX(-50%) translateY(-10px) rotate(5deg); }
+            75% { transform: translateX(-50%) translateY(-5px) rotate(-5deg); }
+        }
+
+        figure.timeline-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        
+        time.year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            box-shadow: 0 5px 20px rgba(237, 100, 166, 0.4);
+            animation: badge-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes badge-glow {
+            0%, 100% { box-shadow: 0 5px 20px rgba(237, 100, 166, 0.4); }
+            50% { box-shadow: 0 10px 30px rgba(237, 100, 166, 0.8); }
+        }
+
+        section.timeline-content h3 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            color: var(--purple-light);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .grades-table {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .grades-table th {
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.3), rgba(237, 100, 166, 0.3));
+            padding: 1rem;
+            text-align: left;
+            color: var(--purple-glow);
+            font-weight: 600;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .grades-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(157, 122, 234, 0.2);
+            color: var(--text-light);
+        }
+
+        .grades-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .grades-table tr:hover {
+            background: rgba(157, 122, 234, 0.1);
+        }
+
+        .grade-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--pink));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0 3px 15px rgba(246, 173, 85, 0.4);
+            animation: grade-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes grade-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        
+        figure.map-container {
+            margin-top: 1.5rem;
+            padding: 12px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        figure.map-container:hover {
+            box-shadow: 0 15px 40px rgba(237, 100, 166, 0.5);
+        }
+
+        figure.map-container iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        figcaption.map-label {
+            padding-top: 8px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.85rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        section.polaroid-gallery {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        figure.polaroid {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            width: 180px;
+            animation: polaroid-float 3s ease-in-out infinite;
+        }
+
+        figure.polaroid:nth-child(1) {
+            transform: rotate(-5deg);
+            animation-delay: 0s;
+        }
+
+        figure.polaroid:nth-child(2) {
+            transform: rotate(5deg);
+            animation-delay: 0.5s;
+        }
+
+        @keyframes polaroid-float {
+            0%, 100% { transform: translateY(0) rotate(var(--rotate, -5deg)); }
+            50% { transform: translateY(-10px) rotate(var(--rotate, -5deg)); }
+        }
+
+        figure.polaroid:hover {
+            transform: rotate(0deg) scale(1.1);
+            box-shadow: 0 20px 50px rgba(237, 100, 166, 0.6);
+            z-index: 10;
+        }
+
+        figure.polaroid img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 5px;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+        }
+
+        figcaption.polaroid-caption {
+            padding-top: 8px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.75rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        
+        section.stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+         article.stat-card {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        article.stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+        }
+
+        article.stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 80px rgba(237, 100, 166, 0.6);
+        }
+
+        article.stat-card i {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: icon-spin 3s ease-in-out infinite;
+        }
+
+        @keyframes icon-spin {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        article.stat-card h3 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--gold), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        article.stat-card p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: linear-gradient(145deg, rgba(26, 9, 51, 0.95), rgba(15, 7, 32, 0.98));
+            backdrop-filter: blur(20px);
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            color: var(--text-light);
+            border-top: 1px solid rgba(157, 122, 234, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            section.timeline::before {
+                left: 30px;
+            }
+
+            article.timeline-item {
+                flex-direction: column !important;
+            }
+
+            section.timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            figure.timeline-icon {
+                left: 30px;
+            }
+
+            header.page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section.polaroid-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul class="particles">
+        <li class="particle"></li>
+        <li class="particle"></li>
+        <li class="particle"></li>
+        <li class="particle"></li>
+        <li class="particle"></li>
+    </ul>
+
+    <nav>
+        <section class="nav-container">
+            <a href="index.html" class="logo">EDUCATION</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="biodata.html">About Me</a></li>
+                <li><a href="education.html" class="active">Education</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="family.html">Family</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </section>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>EDUCATIONAL JOURNEY</h1>
+            <p>My academic achievements and learning milestones</p>
+        </header>
+
+        <section class="timeline">
+            <article class="timeline-item">
+                <figure class="timeline-icon">
+                    <img src="img/edu/edu-uitm.png" alt="UiTM Logo">
+                </figure>
+                <section class="timeline-content">
+                    <time class="year-badge">2023 - Present</time>
+                    <h3>Diploma in Information Management</h3>
+                    <p class="institution">
+                        <i class="fas fa-university"></i>
+                        Universiti Teknologi MARA (UiTM) Kampus Rembau
+                    </p>
+                    <p>Currently pursuing a diploma program focusing on information Management, record management, web development, and library management.</p>
+                    
+                    <figure class="map-container">
+                        <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1745.3996875916118!2d102.0629501!3d2.5109065999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdfd8ea33825ad%3A0x5aa3255f8a169f1c!2sUiTM%20Rembau!5e1!3m2!1sen!2smy!4v1767457860466!5m2!1sen!2smy" 
+                        width="600" height="450" style="border:0;" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                        <figcaption class="map-label">📍 UiTM Kampus Rembau</figcaption>
+                    </figure>
+
+                    <section class="polaroid-gallery">
+                        <figure class="polaroid">
+                            <img src="img/edu/edu-place uitm.jpg" alt="UiTM Campus">
+                            <figcaption class="polaroid-caption">UiTM Rembau Campus</figcaption>
+                        </figure>
+                        <figure class="polaroid">
+                            <img src="img/edu/edu-campus life.png" alt="Campus Life">
+                            <figcaption class="polaroid-caption">Campus Life</figcaption>
+                        </figure>
+                    </section>
+                </section>
+            </article>
+
+            <article class="timeline-item">
+                <figure class="timeline-icon">
+                    <img src="img/edu/edu-semenso.png" alt="Secondary School Logo">
+                </figure>
+                <section class="timeline-content">
+                    <time class="year-badge">2018 - 2023</time>
+                    <h3>Sijil Pelajaran Malaysia (SPM)</h3>
+                    <p class="institution">
+                        <i class="fas fa-school"></i>
+                        Secondary School
+                    </p>
+                    <p><strong>Achievement: 5A</strong> - Demonstrated strong academic performance across multiple subjects</p>
+                    
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bahasa Melayu</td>
+                                <td><span class="grade-badge">A</span></td>
+                            </tr>
+                            <tr>
+                                <td>Economy</td>
+                                <td><span class="grade-badge">A</span></td>
+                            </tr>
+                            <tr>
+                                <td>Geography</td>
+                                <td><span class="grade-badge">A</span></td>
+                            </tr>
+                            <tr>
+                                <td>Science</td>
+                                <td><span class="grade-badge">A</span></td>
+                            </tr>
+                            <tr>
+                                <td>History</td>
+                                <td><span class="grade-badge">A</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <figure class="map-container">
+                        <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.4673957513432!2d101.38737887497355!3d3.68494839628903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cb808a20063cf1%3A0x412774b776e2927!2sSMK%20Kampong%20Soeharto!5e1!3m2!1sen!2smy!4v1767462889107!5m2!1sen!2smy" 
+                        width="600" height="450" style="border:0;" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <figcaption class="map-label">📍 SMK Kampong Soeharto</figcaption>
+                    </figure>
+
+                    <section class="polaroid-gallery">
+                        <figure class="polaroid">
+                            <img src="img/edu/smk-place.jpg" alt="Secondary School">
+                            <figcaption class="polaroid-caption">SEMENSO</figcaption>
+                        </figure>
+                        <figure class="polaroid">
+                            <img src="img/edu/smk-life.jpg" alt="SPM Graduation">
+                            <figcaption class="polaroid-caption">School Memories</figcaption>
+                        </figure>
+                    </section>
+                </section>
+            </article>
+
+            <article class="timeline-item">
+                <figure class="timeline-icon">
+                    <img src="img/edu/sk-logo.png" alt="Primary School Logo">
+                </figure>
+                <section class="timeline-content">
+                    <time class="year-badge">2013 - 2018</time>
+                    <h3>Primary School Education</h3>
+                    <p class="institution">
+                        <i class="fas fa-school"></i>
+                        Primary School
+                    </p>
+                    <p>Completed primary education with a strong academic foundation and developed fundamental learning skills that paved the way for future success.</p>
+                    
+                    <figure class="map-container">
+                        <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.692577631636!2d101.42041747497333!3d3.6180615963560285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc7ecf8f22fcd7%3A0xd7b31a8f6ed11ef9!2sSekolah%20Kebangsaan%20Sungai%20Tengi!5e1!3m2!1sen!2smy!4v1767500257884!5m2!1sen!2smy" 
+                        width="600" height="450" style="border:0;" 
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <figcaption class="map-label">📍 SK Sungai Tengi</figcaption>
+                    </figure>
+
+                    <section class="polaroid-gallery">
+                        <figure class="polaroid">
+                            <img src="img/edu/skst.jpg" alt="Primary School">
+                            <figcaption class="polaroid-caption">Primary School Days</figcaption>
+                        </figure>
+                        <figure class="polaroid">
+                            <img src="img/edu/skst memories.jpg" alt="Childhood">
+                            <figcaption class="polaroid-caption">Childhood Memories</figcaption>
+                        </figure>
+                    </section>
+                </section>
+            </article>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <i class="fas fa-trophy"></i>
+                <h3>5A</h3>
+                <p>SPM Achievement</p>
+            </article>
+            <article class="stat-card">
+                <i class="fas fa-book-reader"></i>
+                <h3>10+</h3>
+                <p>Years of Education</p>
+            </article>
+            <article class="stat-card">
+                <i class="fas fa-certificate"></i>
+                <h3>Ongoing</h3>
+                <p>Diploma Program</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Muhammad Irfan Iskandar. All Rights Reserved.</p>
+        <p><strong>Responsibility Statement:</strong> This website is created and maintained by Muhammad Irfan Iskandar for IMD318 Individual Project.</p>
+    </footer>
+</body>
+</html>

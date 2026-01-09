@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Irf | Family</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a0933;
+            --secondary: #2d1250;
+            --accent: #6b46c1;
+            --purple-light: #9d7aea;
+            --purple-glow: #b794f6;
+            --gold: #f6ad55;
+            --pink: #ed64a6;
+            --cyan: #4fd1c5;
+            --text-light: #e2e8f0;
+            --text-dark: #1a202c;
+            --bg-dark: #0f0720;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(107, 70, 193, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(237, 100, 166, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        
+        ul, figure, blockquote { margin: 0; padding: 0; list-style: none; }
+
+    
+        ul.hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        li.heart {
+            position: absolute;
+            font-size: 20px;
+            color: var(--pink);
+            opacity: 0.3;
+            animation: float-heart 15s infinite ease-in-out;
+            list-style: none;
+        }
+
+        li.heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        li.heart:nth-child(2) { left: 30%; animation-delay: 2s; }
+        li.heart:nth-child(3) { left: 50%; animation-delay: 4s; }
+        li.heart:nth-child(4) { left: 70%; animation-delay: 6s; }
+        li.heart:nth-child(5) { left: 90%; animation-delay: 8s; }
+
+        @keyframes float-heart {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+
+        nav {
+            background: rgba(26, 9, 51, 0.9);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(107, 70, 193, 0.3);
+            border-bottom: 1px solid rgba(157, 122, 234, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        
+        section.nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-glow);
+        }
+
+        
+        main.container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 3rem 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        
+        header.page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(-30px); }
+        }
+
+        header.page-header h1 {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            animation: pulse-glow 2s ease-in-out infinite, heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(157, 122, 234, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(237, 100, 166, 0.8)); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.05); }
+            20% { transform: scale(1); }
+            30% { transform: scale(1.05); }
+            40% { transform: scale(1); }
+        }
+
+        header.page-header p {
+            color: var(--cyan);
+            font-size: 1.2rem;
+        }
+
+    
+        section.family-intro {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(30px); }
+        }
+
+        section.family-intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink), var(--gold));
+        }
+
+        section.family-intro h2 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+
+        section.family-intro p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        
+        section.family-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        
+        article.family-card {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        article.family-card:nth-child(1) { animation-delay: 0.3s; }
+        article.family-card:nth-child(2) { animation-delay: 0.4s; }
+        article.family-card:nth-child(3) { animation-delay: 0.5s; }
+        article.family-card:nth-child(4) { animation-delay: 0.6s; }
+
+        article.family-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+        }
+
+        article.family-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(237, 100, 166, 0.5);
+        }
+
+        
+        figure.family-polaroid {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 0 auto 1.5rem;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        figure.family-polaroid:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(237, 100, 166, 0.6);
+        }
+
+        figure.family-polaroid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 5px;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+        }
+
+        figcaption.family-polaroid-caption {
+            padding-top: 10px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.85rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        article.family-card h3 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .family-role {
+            color: var(--purple-light);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .family-description {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+    
+        section.family-tree {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 3.5rem 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.7s forwards;
+        }
+
+        section.family-tree h2 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+
+        
+        figure.tree-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+            margin: 0;
+        }
+
+    
+        section.parents-row {
+            display: flex;
+            gap: 4rem;
+            position: relative;
+        }
+
+        section.parents-row::after {
+            content: '';
+            position: absolute;
+            bottom: -1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--purple-glow), transparent);
+        }
+
+        section.children-row {
+            display: flex;
+            gap: 4rem;
+            position: relative;
+        }
+
+        section.children-row::before {
+            content: '';
+            position: absolute;
+            top: -1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 1.25rem;
+            background: var(--purple-glow);
+        }
+
+        
+        figure.tree-member {
+            text-align: center;
+            margin: 0;
+        }
+
+        
+        figure.tree-polaroid {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            margin: 0 auto 0.7rem;
+            width: 120px;
+            transition: all 0.3s ease;
+        }
+
+        figure.tree-polaroid:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 35px rgba(237, 100, 166, 0.6);
+        }
+
+        figure.tree-polaroid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 5px;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+        }
+
+        figure.tree-member p {
+            background: linear-gradient(135deg, var(--purple-glow), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        
+        section.family-quotes {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-bottom: 3rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        section.family-quotes h2 {
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+        }
+
+        
+        blockquote.quote-box {
+            background: linear-gradient(145deg, rgba(107, 70, 193, 0.15), rgba(237, 100, 166, 0.15));
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 4px solid var(--pink);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        blockquote.quote-box:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(237, 100, 166, 0.3);
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            color: var(--purple-light);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        
+        section.family-video {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.9s forwards;
+        }
+
+        section.family-video h2 {
+            background: linear-gradient(135deg, var(--cyan), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+
+        
+        figure.video-polaroid {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            max-width: 900px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        figure.video-polaroid:hover {
+            box-shadow: 0 20px 60px rgba(237, 100, 166, 0.6);
+            transform: translateY(-5px);
+        }
+
+        figure.video-polaroid video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        figcaption.video-caption {
+            padding-top: 15px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        
+        section.family-values {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1s forwards;
+        }
+
+        section.family-values h2 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2.2rem;
+        }
+
+        
+        section.values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        article.value-card {
+            background: linear-gradient(145deg, rgba(107, 70, 193, 0.2), rgba(237, 100, 166, 0.2));
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(157, 122, 234, 0.3);
+        }
+
+        article.value-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(237, 100, 166, 0.4);
+            border-color: var(--pink);
+        }
+
+        article.value-card i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        article.value-card h4 {
+            background: linear-gradient(135deg, var(--cyan), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        article.value-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background: linear-gradient(145deg, rgba(26, 9, 51, 0.95), rgba(15, 7, 32, 0.98));
+            backdrop-filter: blur(20px);
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            color: var(--text-light);
+            border-top: 1px solid rgba(157, 122, 234, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            header.page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section.family-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section.parents-row, section.children-row {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            section.parents-row::after, section.children-row::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul class="hearts">
+        <li class="heart">❤️</li>
+        <li class="heart">❤️</li>
+        <li class="heart">❤️</li>
+        <li class="heart">❤️</li>
+        <li class="heart">❤️</li>
+    </ul>
+
+    <nav>
+        <section class="nav-container">
+            <a href="index.html" class="logo">FAMILY</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="biodata.html">About Me</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="family.html" class="active">Family</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </section>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>MY FAMILY</h1>
+            <p>The people who shaped who I am today</p>
+        </header>
+
+        <section class="family-intro">
+            <h2>❤️ About My Family</h2>
+            <p>Family is the foundation of everything I am. My family consists of four wonderful members who have always supported and encouraged me throughout my journey. Each member plays a unique and important role in shaping my character, values, and aspirations. I am truly blessed to have such a loving and supportive family.</p>
+        </section>
+
+        <section class="family-grid">
+            <article class="family-card">
+                <figure class="family-polaroid">
+                    <img src="img/family/ayah.jpg" alt="Father">
+                    <figcaption class="family-polaroid-caption">My Father</figcaption>
+                </figure>
+                <h3>Father</h3>
+                <p class="family-role">Head of Family</p>
+                <p class="family-description">My father is my role model and source of strength. He taught me the values of hard work, perseverance, and integrity. His guidance and wisdom have been instrumental in shaping my future.</p>
+            </article>
+
+            <article class="family-card">
+                <figure class="family-polaroid">
+                    <img src="img/family/ibu.jpg" alt="Mother">
+                    <figcaption class="family-polaroid-caption">My Mother</figcaption>
+                </figure>
+                <h3>Mother</h3>
+                <p class="family-role">Heart of the Family</p>
+                <p class="family-description">My mother is my inspiration and constant supporter. Her unconditional love, patience, and dedication have taught me the importance of compassion and family bonds.</p>
+            </article>
+
+            <article class="family-card">
+                <figure class="family-polaroid">
+                    <img src="img/family/adik.jpg" alt="Sister">
+                    <figcaption class="family-polaroid-caption">My Sister</figcaption>
+                </figure>
+                <h3>Sister</h3>
+                <p class="family-role">Sibling & Friend</p>
+                <p class="family-description">My sister is not just a sibling but also a best friend. We share countless memories together, and she brings joy and laughter to our family every day.</p>
+            </article>
+
+            <article class="family-card">
+                <figure class="family-polaroid">
+                    <img src="img/family/irfan.jpg" alt="Muhammad Irfan">
+                    <figcaption class="family-polaroid-caption">Me</figcaption>
+                </figure>
+                <h3>Me</h3>
+                <p class="family-role">Son & Student</p>
+                <p class="family-description">As a son, I strive to make my family proud through my education and achievements. I'm grateful for their endless support in pursuing my dreams.</p>
+            </article>
+        </section>
+
+        <section class="family-tree">
+            <h2>🌳 Family Tree</h2>
+            <figure class="tree-container">
+                <section class="parents-row">
+                    <figure class="tree-member">
+                        <figure class="tree-polaroid">
+                            <img src="img/family/ayah family tree.jpg" alt="Father">
+                        </figure>
+                        <p>Father</p>
+                    </figure>
+                    <figure class="tree-member">
+                        <figure class="tree-polaroid">
+                            <img src="img/family/ibu family tree.jpg" alt="Mother">
+                        </figure>
+                        <p>Mother</p>
+                    </figure>
+                </section>
+                <section class="children-row">
+                    <figure class="tree-member">
+                        <figure class="tree-polaroid">
+                            <img src="img/family/irfan family tree.jpg" alt="Muhammad Irfan">
+                        </figure>
+                        <p> Irfan</p>
+                    </figure>
+                    <figure class="tree-member">
+                        <figure class="tree-polaroid">
+                            <img src="img/family/iris family tree.jpg" alt="Sister">
+                        </figure>
+                        <p>Iris</p>
+                    </figure>
+                </section>
+            </figure>
+        </section>
+
+        <section class="family-quotes">
+            <h2>💝 Family Quotes</h2>
+            
+            <blockquote class="quote-box">
+                <p class="quote-text">"Family is a life jacket in the stormy sea of life."</p>
+                <p class="quote-author">— J.K. Rowling</p>
+            </blockquote>
+        </section>
+
+        <section class="family-video">
+            <h2>🎬 Family Memories</h2>
+            <figure class="video-polaroid">
+                <video controls>
+                    <source src="vid/family.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <figcaption class="video-caption">Beautiful Family Moments 💕</figcaption>
+            </figure>
+        </section>
+
+        <section class="family-values">
+            <h2>💎 Our Family Values</h2>
+            <section class="values-grid">
+                <article class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h4>Love</h4>
+                    <p>Unconditional love and support for each other through all of life's journeys.</p>
+                </article>
+
+                <article class="value-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h4>Unity</h4>
+                    <p>Standing together as one, supporting each other in good times and bad.</p>
+                </article>
+
+                <article class="value-card">
+                    <i class="fas fa-praying-hands"></i>
+                    <h4>Respect</h4>
+                    <p>Honoring and respecting each family member's individuality and choices.</p>
+                </article>
+
+                <article class="value-card">
+                    <i class="fas fa-smile"></i>
+                    <h4>Happiness</h4>
+                    <p>Creating joyful memories and cherishing every moment spent together.</p>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Muhammad Irfan Iskandar. All Rights Reserved.</p>
+        <p><strong>Responsibility Statement:</strong> This website is created and maintained by Muhammad Irfan Iskandar for IMD318 Individual Project.</p>
+    </footer>
+</body>
+</html>

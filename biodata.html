@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irf| About Me</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a0933;
+            --secondary: #2d1250;
+            --accent: #6b46c1;
+            --purple-light: #9d7aea;
+            --purple-glow: #b794f6;
+            --gold: #f6ad55;
+            --pink: #ed64a6;
+            --cyan: #4fd1c5;
+            --text-light: #e2e8f0;
+            --text-dark: #1a202c;
+            --bg-dark: #0f0720;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(107, 70, 193, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(237, 100, 166, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        
+        ul, dl, dd, figure { margin: 0; padding: 0; list-style: none; }
+        
+        nav {
+            background: rgba(26, 9, 51, 0.9);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(107, 70, 193, 0.3);
+            border-bottom: 1px solid rgba(157, 122, 234, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-glow);
+        }
+
+        
+        main.container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 3rem 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        
+        header.page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(-30px); }
+        }
+
+        header.page-header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: glow-text 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-text {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(157, 122, 234, 0.5),
+                             0 0 40px rgba(237, 100, 166, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(157, 122, 234, 0.8),
+                             0 0 60px rgba(237, 100, 166, 0.6),
+                             0 0 80px rgba(246, 173, 85, 0.4);
+            }
+        }
+
+        header.page-header p {
+            color: var(--cyan);
+            font-size: 1.2rem;
+        }
+
+        
+        section.biodata-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        
+        aside.profile-section {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            text-align: center;
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease 0.2s forwards;
+            position: sticky;
+            top: 7rem;
+            height: fit-content;
+        }
+
+        @keyframes fadeInLeft {
+            to { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: translateX(-30px); }
+        }
+
+        
+        section.polaroid-container {
+            perspective: 1000px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        
+        figure.polaroid-flip {
+            position: relative;
+            width: 100%;
+            padding-top: 133.33%; 
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            animation: autoFlip 8s infinite;
+            margin: 0;
+        }
+
+        @keyframes autoFlip {
+            0%, 45% { transform: rotateY(0deg); }
+            50%, 95% { transform: rotateY(180deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+    
+        figure.polaroid-side {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        figure.polaroid-back {
+            transform: rotateY(180deg);
+        }
+
+        img.polaroid-image {
+            width: 100%;
+            height: calc(100% - 60px);
+            object-fit: cover;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+        }
+
+        figcaption.polaroid-caption {
+            padding-top: 10px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        aside.profile-section h2 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        aside.profile-section p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        a.download-cv {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 10px 30px rgba(237, 100, 166, 0.5);
+            font-weight: 600;
+        }
+
+        a.download-cv:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(237, 100, 166, 0.7);
+        }
+
+        
+        article.info-section {
+            opacity: 0;
+            animation: fadeInRight 0.8s ease 0.4s forwards;
+        }
+
+        @keyframes fadeInRight {
+            to { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: translateX(30px); }
+        }
+
+        
+        section.info-card {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section.info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink), var(--gold));
+        }
+
+        section.info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(237, 100, 166, 0.5);
+        }
+
+        section.info-card h3 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+      
+        dl.info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        ul.info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        li.info-item {
+            background: linear-gradient(145deg, rgba(107, 70, 193, 0.15), rgba(237, 100, 166, 0.15));
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(157, 122, 234, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        li.info-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        li.info-item:hover::before {
+            left: 100%;
+        }
+
+        li.info-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--pink);
+            box-shadow: 0 10px 30px rgba(237, 100, 166, 0.3);
+        }
+
+        span.info-label {
+            font-weight: 600;
+            color: var(--purple-light);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        span.info-value {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            display: block;
+        }
+
+        span.info-value a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        span.info-value a:hover {
+            color: var(--pink);
+        }
+
+        
+        ul.hobby-polaroids {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        li.hobby-polaroid {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            transform: rotate(-2deg);
+            list-style: none;
+        }
+
+        li.hobby-polaroid:nth-child(2) { transform: rotate(2deg); }
+        li.hobby-polaroid:nth-child(3) { transform: rotate(-1deg); }
+
+        li.hobby-polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 15px 40px rgba(237, 100, 166, 0.5);
+            z-index: 10;
+        }
+
+        li.hobby-polaroid img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 5px;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+        }
+
+        p.hobby-caption {
+            padding-top: 8px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.85rem;
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        
+        article.about-text {
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        article.about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        
+        section.skills-category {
+            margin-bottom: 2rem;
+        }
+
+        section.skills-category h4 {
+            background: linear-gradient(135deg, var(--gold), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        ul.software-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.2rem;
+        }
+
+        li.software-item {
+            background: linear-gradient(145deg, rgba(107, 70, 193, 0.2), rgba(237, 100, 166, 0.2));
+            padding: 1.2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            display: block;
+        }
+
+        li.software-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--pink);
+            box-shadow: 0 10px 30px rgba(237, 100, 166, 0.4);
+        }
+
+        figure.software-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 0.8rem;
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        span.software-name {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        
+        figure.youtube-preview {
+            margin-top: 2rem;
+            position: relative;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        figure.youtube-preview iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 10px;
+            border: none;
+        }
+
+        figcaption.youtube-caption {
+            padding-top: 10px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        footer {
+            background: linear-gradient(145deg, rgba(26, 9, 51, 0.95), rgba(15, 7, 32, 0.98));
+            backdrop-filter: blur(20px);
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            color: var(--text-light);
+            border-top: 1px solid rgba(157, 122, 234, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            section.biodata-grid {
+                grid-template-columns: 1fr;
+            }
+
+            aside.profile-section {
+                position: relative;
+                top: 0;
+            }
+
+            header.page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            ul.hobby-polaroids {
+                grid-template-columns: 1fr;
+            }
+
+            ul.software-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <section class="nav-container">
+            <a href="index.html" class="logo">ABOUT ME </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="biodata.html" class="active">About Me</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="family.html">Family</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </section>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>ABOUT ME</h1>
+            <p>Get to know more about Muhammad Irfan Iskandar</p>
+        </header>
+
+        <section class="biodata-grid">
+            <aside class="profile-section">
+                <section class="polaroid-container">
+                    <figure class="polaroid-flip">
+                        <figure class="polaroid-side">
+                            <img src="img/bio/BIO PIC1.png" alt="Muhammad Irfan" class="polaroid-image">
+                            <figcaption class="polaroid-caption">IRFAN ISKANDAR</figcaption>
+                        </figure>
+                        <figure class="polaroid-side polaroid-back">
+                            <img src="img/bio/BIO PIC2.png" alt="Muhammad Irfan" class="polaroid-image">
+                            <figcaption class="polaroid-caption">XenArthur</figcaption>
+                        </figure>
+                    </figure>
+                </section>
+
+                <h2>Muhammad Irfan Iskandar</h2>
+                <p><i>Information Management Student</i></p>
+                <p>📍 UiTM Kampus Rembau, Negeri Sembilan</p>
+                
+                <a href="Resume/Resume.pdf" class="download-cv" download>
+                    <i class="fas fa-download"></i> Resume
+                </a>
+            </aside>
+
+            <article class="info-section">
+                <section class="info-card">
+                    <h3><i class="fas fa-id-card"></i> Personal Information</h3>
+                    <ul class="info-grid">
+                        <li class="info-item">
+                            <span class="info-label">Full Name</span>
+                            <span class="info-value">Muhammad Irfan Iskandar bin Suhaimi</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Date of Birth</span>
+                            <span class="info-value">31/10/2005</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Gender</span>
+                            <span class="info-value">Male</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Nationality</span>
+                            <span class="info-value">Malaysian</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Religion</span>
+                            <span class="info-value">Islam</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Fav Colour</span>
+                            <span class="info-value">Purple and Black</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Phone Number</span>
+                            <span class="info-value"><a href="tel:01123199453">011-2319 9453</a></span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Email Address</span>
+                            <span class="info-value"><a href="mailto:irfan.iskandar2005@gmail.com">irfan.iskandar2005@gmail.com</a></span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Institution</span>
+                            <span class="info-value">UiTM Kampus Rembau</span>
+                        </li>
+                        <li class="info-item">
+                            <span class="info-label">Program</span>
+                            <span class="info-value">Diploma in Information Management</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="info-card">
+                    <h3><i class="fas fa-heart"></i> Interests & Hobbies</h3>
+                    <article class="about-text">
+                        <p>I am a passionate <span class="highlight">hiking enthusiast</span> who loves exploring nature and conquering new peaks. Beyond outdoor adventures, I have a strong interest in <span class="highlight">photography and video editing</span>. I enjoy capturing moments and telling stories through visual media.</p>
+                    </article>
+                    
+                    <ul class="hobby-polaroids">
+                        <li class="hobby-polaroid">
+                            <img src="img/bio/hobby-1.jpg" alt="Hiking">
+                            <p class="hobby-caption">Wild Frames</p>
+                        </li>
+                        <li class="hobby-polaroid">
+                            <img src="img/bio/hobby-2.jpg" alt="Photography">
+                            <p class="hobby-caption">Yassin Muda</p>
+                        </li>
+                        <li class="hobby-polaroid">
+                            <img src="img/bio/hobby-3.jpg" alt="Videography">
+                            <p class="hobby-caption">Adventure Log</p>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="info-card">
+                    <h3><i class="fas fa-tools"></i> Skills & Expertise</h3>
+                    
+                    <section class="skills-category">
+                        <h4>🎬 Video Editing Software</h4>
+                        <ul class="software-grid">
+                            <li class="software-item">
+                                <figure class="software-logo"><a href="https://www.google.com/aclk?sa=L&ai=DChsSEwir7cHu6d2RAxVEpGYCHX1oCGEYACICCAEQABoCc20&ae=2&aspm=1&co=1&ase=2&gclid=Cj0KCQiApL7KBhC7ARIsAD2Xq3CXTjUS6y34E2gPpSf6sEWgvWq7cJiv0KndgMfWHdhvqedS4y_3cdQaAvIoEALw_wcB&ei=zNhPadN46-yDxQ-L0aLRBw&cid=CAAS9gHkaAo-FI4GvIeUkAQe-iK7fYlwonJiq3W2Bs1tVhI5fJJx7bUJtRjKBG8b3eRiqQuM1ZtthWkPiDS9Vw2-HH01VMTrDgVkKKFxoIbiIyn0gTNLeLNA-alrOsyNoXKgdCnCBch9N4wMnu48PT4A0hY3SaR_OHzX8aaIi_I1H6C4ew_5B0SDLF2fY0jbsj6HeOun-2TSCncDUnlf1w4vAJ4Ib3HeL1VZAYzjGtxOvGsas1vZkuSnLnDTByKfuQZk__x0yLs4CrX_xKoHthXCxORUxzeOOPaaDLdTk_t6BC7Ez5iBKVOv9CyiolESNt10ZPlZADyvWwE&cce=2&category=acrcp_v1_35&sig=AOD64_1_1FvdehOjxcX2S0UMPCI1s9R_mw&q&sqi=2&nis=4&adurl&ved=2ahUKEwjTjrzu6d2RAxVr9qACHYuoKHoQ0Qx6BAgXEAE" target="_blank">️<img src="img/bio/pr-icon.png"></a></figure>
+                                <span class="software-name">Adobe Premiere Pro</span>
+                            </li>
+                            <li class="software-item">
+                                <figure class="software-logo"><a href="https://share.google/3Qo1dFUXa7E2f5keW" target="_blank"><img src="img/bio/DL-icon.png"></a></figure>
+                                <span class="software-name">DaVinci Resolve</span>
+                            </li>
+                            <li class="software-item">
+                                <figure class="software-logo"><a href="https://share.google/BeZ0Ktx9UgEYLRIkn" target="_blank"><img src="img/bio/cc-icon.png" ></a></figure>
+                                <span class="software-name">CapCut</span>
+                            </li>
+                            <li class="software-item">
+                                <figure class="software-logo"><a href="https://share.google/sQyZ6DygeudAYenSz" target="_blank"><img src="img/bio/am-icon.png"></a></figure>
+                                <span class="software-name">Alight Motion</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="skills-category">
+                        <h4>📸 Photo Editing Software</h4>
+                        <ul class="software-grid">
+                            <li class="software-item">
+                                <figure class="software-logo"><a href="https://www.google.com/aclk?sa=L&ai=DChsSEwjuvN2P-t2RAxVxlUsFHSLPFygYACICCAEQABoCc2Y&ae=2&aspm=1&co=1&ase=2&gclid=Cj0KCQiApL7KBhC7ARIsAD2Xq3Bs9oMuHiC7oK20c6mJJPERmcZYBHgxtTvOwA4cti728ja06kY_k-kaAlNiEALw_wcB&cid=CAAS9gHkaH2iIv-iOT--593O7IqMBZEJ6rLXOqe7XiFAQhIWCD6XBWRR6SDHTz8GfNLp_soAD_7heIBb4yWpjDqtBf7HjhY3vyGYDLVizgeFrBlUsUb9io0Oy7WQRU74r5VsKKEB2pMcrYCFiZJlZ4hU-KYQZDo-Eap21bILqbj34DYCdw4WkoJ2n7RNERrDpCt7k3-1KX78kns2-XJCrhmJhqc6r2lsxnOzhLsQnCE_saZTLhIcW5ojW1wuONANLrz3qb8YD5P5tMOMBr7NHszqw0IcSiEQKNxMhS3T8Y7K1ePw8aqAwXpFCevohXadB8XpFCevohXadB8X0xGZc3eKQ9Ec&cce=2&category=acrcp_v1_35&sig=AOD64_1CBFuDz85VIyUMUxE6osFjFkLsuQ&q&nis=4&adurl&ved=2ahUKEwjuodeP-t2RAxXIwjgGHf_3MloQ0Qx6BAgYEAE" target="_blank"><img src="img/bio/lr-icon.png"></a></figure>
+                                <span class="software-name">Adobe Lightroom</span>
+                            </li>
+                            <li class="software-item">
+                                <figure class="software-logo"><a href="https://share.google/YFwL6smaMPYSVKZCU" target="_blank"><img src="img/bio/pa-icon.png"></a></figure>
+                                <span class="software-name">Picsart</span>
+                            </li>
+                            <li class="software-item">
+                                <figure class="software-logo"><a href="https://share.google/6pHXUSrRdxvTovxG1" target="_blank"><img src="img/bio/ss-icon .png"></a></figure>
+                                <span class="software-name">Snapseed</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <figure class="youtube-preview">
+                       <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/R0iPBeNyUG8?si=xlZ-v7M5_8-lYsGT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <figcaption class="youtube-caption">My Project Showcase</figcaption>
+                    </figure>
+                </section>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Muhammad Irfan Iskandar. All Rights Reserved.</p>
+        <p><strong>Responsibility Statement:</strong> This website is created and maintained by Muhammad Irfan Iskandar for IMD318 Individual Project.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irf | Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a0933;
+            --secondary: #2d1250;
+            --accent: #6b46c1;
+            --purple-light: #9d7aea;
+            --purple-glow: #b794f6;
+            --gold: #f6ad55;
+            --pink: #ed64a6;
+            --cyan: #4fd1c5;
+            --text-light: #e2e8f0;
+            --bg-dark: #0f0720;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(107, 70, 193, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(237, 100, 166, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        
+        body > header {
+            background: rgba(26, 9, 51, 0.9);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(107, 70, 193, 0.3);
+            border-bottom: 1px solid rgba(157, 122, 234, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-glow);
+        }
+
+    
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 3rem 3rem;
+            position: relative;
+            z-index: 1;
+            flex: 1; 
+        }
+
+        .page-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+
+        .page-intro h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .page-intro p {
+            color: var(--cyan);
+            font-size: 1.2rem;
+        }
+
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .left-column {
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease 0.2s forwards;
+        }
+
+        @keyframes fadeInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+        }
+
+        
+        .card {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(237, 100, 166, 0.5);
+        }
+
+        .card h3 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        
+        address.contact-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(157, 122, 234, 0.2);
+            font-style: normal; 
+        }
+
+        address.contact-row:last-of-type {
+            border-bottom: none;
+        }
+
+        span.icon-box {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 5px 20px rgba(237, 100, 166, 0.4);
+        }
+
+        .details h4 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+            margin-top: 0;
+        }
+
+        .details p {
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .details a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .details a:hover {
+            color: var(--pink);
+        }
+
+        /* Social Links */
+        .social-nav {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, rgba(107, 70, 193, 0.3), rgba(237, 100, 166, 0.3));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(157, 122, 234, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--purple-glow);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(237, 100, 166, 0.6);
+        }
+
+        /* Form Column */
+        .right-column {
+            opacity: 0;
+            animation: fadeInRight 0.8s ease 0.4s forwards;
+        }
+
+        @keyframes fadeInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+        }
+
+        .form-card h3 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        
+        p.form-group {
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        p.form-group label {
+            display: block;
+            color: var(--purple-light);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        p.form-group input,
+        p.form-group textarea,
+        p.form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(145deg, rgba(107, 70, 193, 0.2), rgba(237, 100, 166, 0.2));
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+        }
+
+        p.form-group input:focus,
+        p.form-group textarea:focus,
+        p.form-group select:focus {
+            outline: none;
+            border-color: var(--pink);
+            box-shadow: 0 0 20px rgba(237, 100, 166, 0.3);
+        }
+
+        p.form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(237, 100, 166, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(237, 100, 166, 0.6);
+        }
+
+        output.success-message {
+            display: none;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+            width: 100%;
+        }
+
+        output.success-message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            background: linear-gradient(145deg, rgba(26, 9, 51, 0.95), rgba(15, 7, 32, 0.98));
+            backdrop-filter: blur(20px);
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            color: var(--text-light);
+            border-top: 1px solid rgba(157, 122, 234, 0.2);
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-intro h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">CONTACT</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="biodata.html">About Me</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="family.html">Family</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <header class="page-intro">
+            <h1>Get In Touch</h1>
+            <p>Let's connect and create something amazing together</p>
+        </header>
+
+        <section class="content-grid">
+            
+            <section class="left-column">
+                
+                <article class="card">
+                    <h3><i class="fas fa-address-book"></i> Contact Information</h3>
+                    
+                    <address class="contact-row">
+                        <span class="icon-box">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="details">
+                            <h4>Email Address</h4>
+                            <p><a href="mailto:irfan.iskandar2005@gmail.com">irfan.iskandar2005@gmail.com</a></p>
+                        </span>
+                    </address>
+
+                    <address class="contact-row">
+                        <span class="icon-box">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <span class="details">
+                            <h4>Phone Number</h4>
+                            <p><a href="tel:01123199453">011-2319 9453</a></p>
+                        </span>
+                    </address>
+
+                    <address class="contact-row">
+                        <span class="icon-box">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <span class="details">
+                            <h4>Location</h4>
+                            <p>UiTM Kampus Rembau<br>Negeri Sembilan, Malaysia</p>
+                        </span>
+                    </address>
+
+                    <address class="contact-row">
+                        <span class="icon-box">
+                            <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        <span class="details">
+                            <h4>Student Status</h4>
+                            <p>Diploma in Information Management</p>
+                        </span>
+                    </address>
+                </article>
+
+                <article class="card">
+                    <h3><i class="fas fa-share-alt"></i> Connect With Me</h3>
+                    <nav class="social-nav">
+                        <a href="https://my.linkedin.com/in/irfan-iskandar-suhaimi-396b63347" target="_blank" class="social-link" title="LinkedIn" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/sooyaaz" target="_blank" class="social-link" title="GitHub" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.instagram.com/irfnzz._?igsh=ZTBmeTF1dTh1MWZs" target="_blank" class="social-link" title="Instagram" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@irfnzz__?_r=1&_t=ZS-92XPJ46d7fW" target="_blank" class="social-link" title="TikTok" target="_blank">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                
+                    </nav>
+                </article>
+            </section>
+
+            <section class="right-column">
+                <article class="card form-card">
+                    <h3>Send Me an Email</h3>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        
+                        <p class="form-group">
+                            <label for="name">Your Name <span style="color: var(--pink);">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </p>
+
+                        <p class="form-group">
+                            <label for="email">Your Email Address <span style="color: var(--pink);">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        </p>
+
+                        <p class="form-group">
+                            <label for="subject">Subject <span style="color: var(--pink);">*</span></label>
+                            <input type="text" id="subject" name="subject" required placeholder="Enter subject">
+                        </p>
+
+                        <p class="form-group">
+                            <label for="message">Message <span style="color: var(--pink);">*</span></label>
+                            <textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
+                        </p>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Email
+                        </button>
+
+                        <output class="success-message" id="successMessage">
+                            <i class="fas fa-check-circle"></i> Email sent successfully!
+                        </output>
+                    </form>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Muhammad Irfan Iskandar. All Rights Reserved.</p>
+        <p><strong>Responsibility Statement:</strong> This website is created and maintained by Muhammad Irfan Iskandar for IMD318 Individual Project.</p>
+    </footer>
+
+    <script>
+        // CONFIGURE YOUR EMAIL HERE
+        const RECIPIENT_EMAIL = 'irfan.iskandar2005@gmail.com';
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Create email body
+            const emailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+
+            // Create mailto link
+            const mailtoLink = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${emailBody}`;
+
+            // Open default email client
+            window.location.href = mailtoLink;
+
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+
+            // Reset form
+            document.getElementById('contactForm').reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        }
+
+        // Form validation styling
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value) {
+                    this.style.borderColor = 'var(--pink)';
+                } else {
+                    this.style.borderColor = 'rgba(157, 122, 234, 0.3)';
+                }
+            });
+
+            input.addEventListener('input', function() {
+                if (this.value) {
+                    this.style.borderColor = 'var(--purple-glow)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

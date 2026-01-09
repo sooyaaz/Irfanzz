@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Irf | Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a0933;
+            --secondary: #2d1250;
+            --accent: #6b46c1;
+            --purple-light: #9d7aea;
+            --purple-glow: #b794f6;
+            --gold: #f6ad55;
+            --pink: #ed64a6;
+            --cyan: #4fd1c5;
+            --text-light: #e2e8f0;
+            --bg-dark: #0f0720;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(107, 70, 193, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(237, 100, 166, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        
+        ul, figure, dl, dd { margin: 0; padding: 0; list-style: none; }
+
+        nav {
+            background: rgba(26, 9, 51, 0.9);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(107, 70, 193, 0.3);
+            border-bottom: 1px solid rgba(157, 122, 234, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        
+        section.nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple-glow);
+        }
+
+        
+        main.container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 3rem 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        
+        header.page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(-30px); }
+        }
+
+        header.page-header h1 {
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            animation: pulse-glow 2s ease-in-out infinite, slide-bounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(157, 122, 234, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(237, 100, 166, 0.8)); }
+        }
+
+        @keyframes slide-bounce {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        header.page-header p {
+            color: var(--cyan);
+            font-size: 1.2rem;
+        }
+
+        
+        article.experience-card {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3.5rem;
+            box-shadow: 0 25px 70px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(30px); }
+        }
+
+        article.experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--purple-glow), var(--pink), var(--gold));
+            animation: glow-line 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-line {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        article.experience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(237, 100, 166, 0.5);
+        }
+
+        
+        header.experience-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        
+        figure.company-logo {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            margin: 0;
+        }
+
+        figure.company-logo:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 20px 60px rgba(237, 100, 166, 0.6);
+        }
+
+        figure.company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #f0f0f0, #ffffff);
+        }
+
+        
+        section.experience-info {
+            flex: 1;
+        }
+
+        h2.job-title {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        p.company-name {
+            font-size: 1.5rem;
+            color: var(--purple-light);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        time.duration {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(237, 100, 166, 0.4);
+        }
+
+        
+        section.description {
+            margin-top: 2rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        section.responsibilities {
+            margin-top: 2.5rem;
+        }
+
+        section.responsibilities h4 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        section.responsibilities ul {
+            list-style: none;
+        }
+
+        section.responsibilities li {
+            padding: 1rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(157, 122, 234, 0.1);
+        }
+
+        section.responsibilities li:last-child {
+            border-bottom: none;
+        }
+
+        section.responsibilities li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+
+        section.responsibilities li:hover {
+            padding-left: 3rem;
+            color: var(--purple-glow);
+        }
+
+        section.skills-learned {
+            margin-top: 2.5rem;
+        }
+
+        section.skills-learned h4 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        
+        ul.skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+
+        li.skill-tag {
+            background: linear-gradient(145deg, rgba(107, 70, 193, 0.3), rgba(237, 100, 166, 0.3));
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(157, 122, 234, 0.4);
+            list-style: none;
+        }
+
+        li.skill-tag:hover {
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            border-color: var(--pink);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(237, 100, 166, 0.5);
+        }
+
+        
+        section.experience-gallery {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 25px 70px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+        }
+
+        section.experience-gallery h3 {
+            background: linear-gradient(135deg, var(--cyan), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        
+        section.photo-grid-2col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        div.photo-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        
+        figure.photo-polaroid {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            margin: 0;
+        }
+
+        figure.photo-polaroid:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 60px rgba(237, 100, 166, 0.6);
+        }
+
+        figure.photo-polaroid img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+        }
+
+        figcaption.photo-caption {
+            padding-top: 12px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        
+        section.location-section {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 25px 70px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        section.location-section h3 {
+            background: linear-gradient(135deg, var(--pink), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        
+        figure.map-polaroid {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            max-width: 900px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        figure.map-polaroid:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(237, 100, 166, 0.6);
+        }
+
+        figure.map-polaroid iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        figcaption.map-caption {
+            padding-top: 12px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.95rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        
+        aside.achievements-section {
+            background: linear-gradient(145deg, rgba(45, 18, 80, 0.8), rgba(26, 9, 51, 0.9));
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 25px 70px rgba(107, 70, 193, 0.4);
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        aside.achievements-section h3 {
+            background: linear-gradient(135deg, var(--purple-glow), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        
+        ul.achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        
+        li.achievement-item {
+            background: linear-gradient(145deg, rgba(107, 70, 193, 0.2), rgba(237, 100, 166, 0.2));
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(157, 122, 234, 0.3);
+            list-style: none;
+        }
+
+        li.achievement-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(237, 100, 166, 0.4);
+            border-color: var(--pink);
+        }
+
+        li.achievement-item i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--purple-glow), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        li.achievement-item h4 {
+            background: linear-gradient(135deg, var(--cyan), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        li.achievement-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background: linear-gradient(145deg, rgba(26, 9, 51, 0.95), rgba(15, 7, 32, 0.98));
+            backdrop-filter: blur(20px);
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            color: var(--text-light);
+            border-top: 1px solid rgba(157, 122, 234, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            header.experience-header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            figure.company-logo {
+                width: 150px;
+                height: 150px;
+            }
+
+            header.page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            ul.skill-tags {
+                justify-content: center;
+            }
+
+            section.photo-grid-2col {
+                grid-template-columns: 1fr;
+            }
+
+            figure.map-polaroid iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <section class="nav-container">
+            <a href="index.html" class="logo">EXPERIENCE</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="biodata.html">About Me</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="experience.html" class="active">Experience</a></li>
+                <li><a href="family.html">Family</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </section>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>MY EXPERIENCE</h1>
+            <p>My journey in the corporate world and skill development</p>
+        </header>
+
+        <article class="experience-card">
+            <header class="experience-header">
+                <figure class="company-logo">
+                    <img src="img/exp/Petaling_Jaya_.png" alt="MBPJ Logo">
+                </figure>
+                <section class="experience-info">
+                    <h2 class="job-title">Corporate Communication Intern</h2>
+                    <p class="company-name">Majlis Bandaraya Petaling Jaya (MBPJ)</p>
+                    <time class="duration"><i class="fas fa-calendar-alt"></i> July-Sept</time>
+                </section>
+            </header>
+
+            <section class="description">
+                <p>Completed an enriching internship at <strong>Majlis Bandaraya Petaling Jaya</strong>, working in the Corporate Communication department. This experience provided valuable insights into municipal governance, public relations, and corporate communications in a government organization.</p>
+            </section>
+
+            <section class="responsibilities">
+                <h4><i class="fas fa-tasks"></i> Key Responsibilities</h4>
+                <ul>
+                    <li>Assisted in creating and managing digital content for MBPJ's social media platforms</li>
+                    <li>Supported the team in organizing corporate events and public engagement activities</li>
+                    <li>Contributed to internal and external communication materials</li>
+                    <li>Helped maintain and update corporate communication databases</li>
+            </section>
+
+            <section class="skills-learned">
+                <h4><i class="fas fa-lightbulb"></i> Skills Developed</h4>
+                <ul class="skill-tags">
+                    <li class="skill-tag">Corporate Communication</li>
+                    <li class="skill-tag">Content Creation</li>
+                    <li class="skill-tag">Social Media Management</li>
+                    <li class="skill-tag">Event Coordination</li>
+                    <li class="skill-tag">Public Relations</li>
+                </ul>
+            </section>
+        </article>
+
+        <section class="location-section">
+            <h3><i class="fas fa-map-marker-alt"></i> Office Location</h3>
+            <figure class="map-polaroid">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.0901994191336!2d101.64017759263514!3d3.097415924265532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4bc46d295575%3A0xc1f0aeb38f1ed14a!2sPetaling%20Jaya%20City%20Council!5e1!3m2!1sen!2smy!4v1767671215957!5m2!1sen!2smy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <figcaption class="map-caption">Majlis Bandaraya Petaling Jaya, Selangor</figcaption>
+            </figure>
+        </section>
+
+        <section class="experience-gallery">
+            <h3><i class="fas fa-images"></i> Experience Gallery</h3>
+            <section class="photo-grid-2col">
+                <div class="photo-column">
+                    <figure class="photo-polaroid">
+                        <img src="img/exp/intern 1.jpg" alt="Experience Photo 1">
+                        <figcaption class="photo-caption">At Booth MBPJ</figcaption>
+                    </figure>
+                    <figure class="photo-polaroid">
+                        <img src="img/exp/intern2.jpg" alt="Experience Photo 2">
+                        <figcaption class="photo-caption">Visit Kuala langat</figcaption>
+                    </figure>
+                </div>
+                <div class="photo-column">
+                    <figure class="photo-polaroid">
+                        <img src="img/exp/intern 3.jpg" alt="Experience Photo 3">
+                        <figcaption class="photo-caption">Event Coverage</figcaption>
+                    </figure>
+                    <figure class="photo-polaroid">
+                        <img src="img/exp/intern4.jpg" alt="Experience Photo 4">
+                        <figcaption class="photo-caption">EKSA</figcaption>
+                    </figure>
+                </div>
+            </section>
+        </section>
+
+        <aside class="achievements-section">
+            <h3><i class="fas fa-star"></i> Key Achievements & Learning Outcomes</h3>
+            <ul class="achievement-grid">
+                <li class="achievement-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Teamwork</h4>
+                    <p>Enhanced collaboration skills by working with diverse teams across departments</p>
+                </li>
+                <li class="achievement-item">
+                    <i class="fas fa-comments"></i>
+                    <h4>Communication</h4>
+                    <p>Developed strong professional communication and interpersonal skills</p>
+                </li>
+                <li class="achievement-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Professional Growth</h4>
+                    <p>Gained practical experience in corporate environment and public sector operations</p>
+                </li>
+                <li class="achievement-item">
+                    <i class="fas fa-pencil-alt"></i>
+                    <h4>Content Creation</h4>
+                    <p>Improved content writing and digital media creation abilities</p>
+                </li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <p>© 2026 Muhammad Irfan Iskandar. All Rights Reserved.</p>
+        <p><strong>Responsibility Statement:</strong> This website is created and maintained by Muhammad Irfan Iskandar for IMD318 Individual Project.</p>
+    </footer>
+</body>
+</html>
